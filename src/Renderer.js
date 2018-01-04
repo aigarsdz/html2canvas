@@ -71,7 +71,8 @@ export interface RenderTarget<Output> {
         image: ImageElement,
         imageSize: Size,
         offsetX: number,
-        offsetY: number
+        offsetY: number,
+        repeat?: string
     ): void,
 
     renderTextNode(
@@ -245,7 +246,14 @@ export default class Renderer {
 
             const offsetX = Math.round(backgroundPositioningArea.left + position.x);
             const offsetY = Math.round(backgroundPositioningArea.top + position.y);
-            this.target.renderRepeat(path, image, backgroundImageSize, offsetX, offsetY);
+            this.target.renderRepeat(
+                path,
+                image,
+                backgroundImageSize,
+                offsetX,
+                offsetY,
+                background.originalRepeat
+            );
         }
     }
 

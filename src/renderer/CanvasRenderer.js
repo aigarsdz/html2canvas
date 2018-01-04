@@ -192,10 +192,16 @@ export default class CanvasRenderer implements RenderTarget<HTMLCanvasElement> {
         image: ImageElement,
         imageSize: Size,
         offsetX: number,
-        offsetY: number
+        offsetY: number,
+        repeat?: string
     ) {
+        const backgroundRepeat = repeat || 'repeat';
+
         this.path(path);
-        this.ctx.fillStyle = this.ctx.createPattern(this.resizeImage(image, imageSize), 'repeat');
+        this.ctx.fillStyle = this.ctx.createPattern(
+            this.resizeImage(image, imageSize),
+            backgroundRepeat
+        );
         this.ctx.translate(offsetX, offsetY);
         this.ctx.fill();
         this.ctx.translate(-offsetX, -offsetY);

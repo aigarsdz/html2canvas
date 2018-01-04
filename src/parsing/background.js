@@ -40,7 +40,8 @@ export type BackgroundImage = {
     source: BackgroundSource,
     position: [Length, Length],
     size: [BackgroundSize, BackgroundSize],
-    repeat: BackgroundRepeat
+    repeat: BackgroundRepeat,
+    originalRepeat: string
 };
 
 export const BACKGROUND_REPEAT = {
@@ -348,6 +349,7 @@ const parseBackgroundImages = (
             repeat: parseBackgroundRepeat(
                 typeof repeats[index] === 'string' ? repeats[index] : repeats[0]
             ),
+            originalRepeat: typeof repeats[index] === 'string' ? repeats[index] : repeats[0],
             size: size.length < 2 ? [size[0], AUTO_SIZE] : [size[0], size[1]],
             position: position.length < 2 ? [position[0], position[0]] : [position[0], position[1]]
         };
