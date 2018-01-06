@@ -105,7 +105,7 @@ export const calculateBackgroundSize = (
             : new Size(bounds.height * currentRatio, bounds.height);
     }
 
-    if (size[0].value) {
+    if (size[0].value != undefined && size[0].value != null) {
         width = size[0].value.getAbsoluteValue(bounds.width);
     }
 
@@ -113,11 +113,11 @@ export const calculateBackgroundSize = (
         height = image.height;
     } else if (size[1].size === BACKGROUND_SIZE.AUTO) {
         height = width / image.width * image.height;
-    } else if (size[1].value) {
+    } else if (size[1].value != undefined && size[1].value != null) {
         height = size[1].value.getAbsoluteValue(bounds.height);
     }
 
-    if (size[0].size === BACKGROUND_SIZE.AUTO) {
+    if (size[0].size === BACKGROUND_SIZE.AUTO && image.height !== 0 && image.width !== 0) {
         width = height / image.height * image.width;
     }
 
